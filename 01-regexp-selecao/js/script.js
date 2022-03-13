@@ -269,3 +269,67 @@ const regexpDigito1 = /\B\d+\B/gi;
 '11_22 33-44 55é66 77e88'.replace(regexpDigito1, 'X');
 // 1X_X2 33-44 55é66 7XeX8
 
+
+// ANCHOR BEGINNING
+// Com o ^ é possível informar que a busca deve ser iniciada no início da linha.
+// Procura: sequência de alfanuméricos no início da linha.
+const regexp24 = /^\w+/g;
+
+`andre@origamid.com
+contato@origamid.com`.replace(regexp24, 'X');
+// X@origamid.com
+// contato@origamid.com
+
+
+// ANCHOR END
+// Com o $ é possível informar que a busca deve ser iniciada no final da linha.
+// Procura: sequência de alfanuméricos no final da linha.
+const regexp25 = /\w+$/g;
+
+`andre@origamid.com
+contato@origamid.com`.replace(regexp25, 'X');
+// andre@origamid.com
+// contato@origamid.X
+
+
+// FLAG: M
+// Com a flag m de multiline, podemos informar que a busca de início ^ e final $ de linha devem ocorrer em todas as linhas disponíveis.
+// Procura: sequência de alfanuméricos no final da linha.
+const regexp26 = /\w+$/gm;
+
+`andre@origamid.com
+contato@origamid.com`.replace(regexp26, 'X');
+// andre@origamid.X
+// contato@origamid.X
+
+// Procura: sequência de alfanuméricos no início da linha.
+const regexp27 = /^\w+/gm;
+
+`andre@origamid.com
+contato@origamid.com`.replace(regexp27, 'X');
+// X@origamid.com
+// X@origamid.com
+
+
+// LINE FEED \N
+// O \n irá selecionar o final de uma linha, quando criamos uma nova.
+const regexp28 = /\n/g;
+
+`andre@origamid.com\ncontato@origamid.com`.replace(regexp28, '---');
+// andre@origamid.com---contato@origamid.com
+
+`andre@origamid.com
+contato@origamid.com`.replace(regexp28, 'X');
+// andre@origamid.com---contato@origamid.com
+
+// \t seleciona tabs
+
+
+// UNICODE \U
+// O \u irá selecionar o respectivo caracter unicode, de acordo com o código passado em \uXXXX. Ex: \u0040 seleciona o @.
+// Procura: @ ou ©
+const regexp29 = /\u0040|\u00A9/g;
+
+'andre@origamid.com ©'.replace(regexp29, '---');
+// andre---origamid.com ---
+
